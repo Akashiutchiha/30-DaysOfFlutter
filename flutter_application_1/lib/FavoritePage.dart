@@ -22,7 +22,13 @@ class FavoritesPage extends StatelessWidget {
         ),
         for (var pair in appState.favorites)
           ListTile(
-            leading: Icon(Icons.favorite),
+            leading: IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                appState.favorites.remove(pair);
+                appState.notifyListeners();
+              },
+            ),
             title: Text(pair.asLowerCase),
           ),
       ],
