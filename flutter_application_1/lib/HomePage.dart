@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import "main.dart";
 import 'package:provider/provider.dart';
@@ -77,8 +79,13 @@ class GeneratorPage extends StatelessWidget {
 
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          Expanded(
+            flex: 1,
+            child: HistoryList(),
+          ),
+          SizedBox(height: 10),
           BigCard(pair: pair),
           SizedBox(height: 10),
           Row(
@@ -95,70 +102,58 @@ class GeneratorPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
+                  appState.addItem();
+                  appState.notifyListeners();
                 },
                 child: Text('Next'),
               ),
             ],
           ),
+          SizedBox(height: 240),
         ],
       ),
     );
   }
 }
 
-class HistoryListView extends StatefulWidget {
-  const HistoryListView({Key? key}) : super(key: key);
+class HistoryList extends StatefulWidget {
+  const HistoryList({super.key});
 
   @override
-  State<HistoryListView> createState() => _HistoryListViewState();
+  State<HistoryList> createState() => _HistoryListState();
 }
 
-class _HistoryListViewState extends State<HistoryListView> {
-  /// Needed so that [MyAppState] can tell [AnimatedList] below to animate
-  /// new items.
-  final _key = GlobalKey();
-
-  /// Used to "fade out" the history items at the top, to suggest continuation.
-  static const Gradient _maskingGradient = LinearGradient(
-    // This gradient goes from fully transparent to fully opaque black...
-    colors: [Colors.transparent, Colors.black],
-    // ... from the top (transparent) to half (0.5) of the way to the bottom.
-    stops: [0.0, 0.5],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
+class _HistoryListState extends State<HistoryList> {
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
-    appState.historyListKey = _key;
+    var appState = context.watch<MyAppState>();
+    var pair = appState.current;
 
     return ShaderMask(
-      shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
-      // This blend mode takes the opacity of the shader (i.e. our gradient)
-      // and applies it to the destination (i.e. our animated list).
-//       blendMode: BlendMode.dstIn,
+      shaderCallback: (rect) {
+        return LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.transparent, Colors.black],
+        ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+      },
       child: AnimatedList(
-        key: _key,
         reverse: true,
-        padding: EdgeInsets.only(top: 100),
-        initialItemCount: appState.history.length,
+        key: appState.key,
+        initialItemCount: 0,
         itemBuilder: (context, index, animation) {
-          final pair = appState.history[index];
           return SizeTransition(
+            key: UniqueKey(),
             sizeFactor: animation,
             child: Center(
               child: TextButton.icon(
                 onPressed: () {
-                  appState.toggleFavorite(pair);
+                  appState.toggleFavorite(appState.all[index]);
                 },
-                icon: appState.favorites.contains(pair)
+                icon: appState.favorites.contains(appState.all[index])
                     ? Icon(Icons.favorite, size: 12)
                     : SizedBox(),
-                label: Text(
-                  pair.asLowerCase,
-                  semanticsLabel: pair.asPascalCase,
-                ),
+                label: Text("${appState.all[index]}"),
               ),
             ),
           );
