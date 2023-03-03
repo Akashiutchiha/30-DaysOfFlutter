@@ -16,7 +16,7 @@ class Layout extends StatelessWidget {
             style: TextStyle(
                 color: Color.fromARGB(255, 250, 249, 249),
                 fontSize: 20,
-                fontWeight: FontWeight.w600),
+                fontWeight: FontWeight.w500),
           ),
           leading: CircleAvatar(
             backgroundImage: AssetImage(
