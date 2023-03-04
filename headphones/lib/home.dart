@@ -1,3 +1,5 @@
+import 'package:headphones/Info.dart';
+
 import 'constants.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +90,12 @@ class Layout extends StatelessWidget {
                       borderRadius: BorderRadius.circular(40)),
                   1),
               color: Colors.orange,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const InfoPage()),
+                );
+              },
               child: Text(
                 "Get it now",
                 style: TextStyle(color: Colors.white, fontSize: 20),
