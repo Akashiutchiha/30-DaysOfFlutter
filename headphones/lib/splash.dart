@@ -6,23 +6,21 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                    color: Colors.blue,
-                    image: DecorationImage(
-                      image: AssetImage("images/headset.png"),
-                    ))),
-          ],
-        ),
-      )),
-    );
+    return Scaffold(
+        body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  image: DecorationImage(
+                    image: AssetImage("images/headset.png"),
+                  ))),
+        ],
+      ),
+    ));
   }
 }
