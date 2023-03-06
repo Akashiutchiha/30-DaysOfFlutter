@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:headphones/Info.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'constants.dart';
+import 'splash.dart';
 import 'home.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -18,7 +21,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: SafeArea(child: MyHomePage()),
+      home: SafeArea(
+        child: AnimatedSplashScreen(
+          splash: const Splash(),
+          nextScreen: MyHomePage(),
+          splashTransition: SplashTransition.scaleTransition,
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        ),
+      ),
     );
   }
 }
@@ -29,6 +39,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void initialization() async {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
