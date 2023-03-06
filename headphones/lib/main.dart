@@ -23,10 +23,11 @@ class MyApp extends StatelessWidget {
       ),
       home: SafeArea(
         child: AnimatedSplashScreen(
+          duration: 3000,
           splash: const Splash(),
           nextScreen: MyHomePage(),
-          splashTransition: SplashTransition.scaleTransition,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: Colors.blue,
         ),
       ),
     );

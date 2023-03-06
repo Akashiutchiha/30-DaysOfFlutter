@@ -8,13 +8,21 @@ class Splash extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                image: AssetImage("images/headset.png"),
-              )))),
+          body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                    color: Colors.blue,
+                    image: DecorationImage(
+                      image: AssetImage("images/headset.png"),
+                    ))),
+          ],
+        ),
+      )),
     );
   }
 }
