@@ -3,7 +3,9 @@ import 'package:headphones/Info.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'constants.dart';
 import 'splash.dart';
+import 'slider.dart';
 import 'home.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -61,19 +63,38 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          Container(
-            height: 435,
-            width: 400,
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('images/headset.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
+          Padding(
+            padding: const EdgeInsets.only(top: 55.0),
+            child: ListView(children: [
+              CarouselSlider(
+                items: const [
+                  slider(
+                    imageText: 'images/headset.png',
+                  ),
+                  slider(
+                    imageText: 'images/headset.png',
+                  ),
+                  slider(
+                    imageText: 'images/headset.png',
+                  ),
+                  slider(
+                    imageText: 'images/headset.png',
+                  ),
+                ],
+                options: CarouselOptions(
+                  height: 400.0,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.8,
+                ),
+              )
+            ]),
           ),
-          Layout(),
+          const Layout(),
         ]),
       ),
     );
