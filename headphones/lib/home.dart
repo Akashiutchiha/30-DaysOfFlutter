@@ -1,12 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:headphones/Info.dart';
-
+import 'package:carousel_slider/carousel_controller.dart';
 import 'constants.dart';
 import 'package:flutter/material.dart';
 
 class Layout extends StatelessWidget {
-  const Layout({
-    super.key,
-  });
+  Layout({required this.initialPage});
+  final int initialPage;
 
   @override
   Widget build(BuildContext context) {
@@ -120,8 +120,11 @@ class Layout extends StatelessWidget {
                     height: 55,
                     onPressed: () {},
                     child: Text(
-                      '01 of 05',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      "${initialPage + 1} of 4",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 248, 247, 247),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
                     ),
                     shape: ShapeBorder.lerp(
                         RoundedRectangleBorder(
