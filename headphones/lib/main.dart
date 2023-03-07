@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           duration: 3000,
           splash: const Splash(),
           nextScreen: MyHomePage(),
-          splashTransition: SplashTransition.slideTransition,
+          splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.white,
         ),
       ),
