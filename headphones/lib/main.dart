@@ -23,10 +23,11 @@ class MyApp extends StatelessWidget {
       ),
       home: SafeArea(
         child: AnimatedSplashScreen(
+          splashIconSize: 2000,
           duration: 3000,
           splash: const Splash(),
           nextScreen: MyHomePage(),
-          splashTransition: SplashTransition.fadeTransition,
+          splashTransition: SplashTransition.slideTransition,
           backgroundColor: Colors.white,
         ),
       ),
@@ -49,18 +50,32 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/hp2.jpeg'),
-              fit: BoxFit.cover,
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/bg.jpg'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        ),
-        Layout(),
-      ]),
+          Container(
+            height: 435,
+            width: 400,
+            padding: EdgeInsets.all(5),
+            margin: EdgeInsetsDirectional.fromSTEB(30, 50, 30, 0),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/headset.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Layout(),
+        ]),
+      ),
     );
   }
 }

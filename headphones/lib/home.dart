@@ -63,7 +63,7 @@ class Layout extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 250,
+          height: 320,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -77,7 +77,7 @@ class Layout extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
             SizedBox(
-              height: 150,
+              height: 100,
             ),
             MaterialButton(
               height: 50,

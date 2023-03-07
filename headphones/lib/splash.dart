@@ -11,14 +11,16 @@ class Splash extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-              height: 70,
-              width: 70,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  image: DecorationImage(
-                    image: AssetImage("images/headset.png"),
-                  ))),
+          Icon(Icons.headphones,
+              size: 70.0, color: Color.fromARGB(255, 5, 5, 5)),
+          // Container(
+          //     height: 70.0,
+          //     width: 70.0,
+          //     decoration: BoxDecoration(
+          //         color: Colors.white,
+          //         image: DecorationImage(
+          //           image: AssetImage("images/headset.png"),
+          //         ))),
         ],
       ),
     ));
