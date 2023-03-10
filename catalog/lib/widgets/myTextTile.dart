@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:catalog/screens/cart.dart';
+import 'package:provider/provider.dart';
 
 import '../selected.dart';
 
@@ -25,7 +26,13 @@ class _MyTextTileState extends State<MyTextTile> {
   }
 
   void add() {
-    Selected.add(widget.title);
+    Consumer<Selected_Catalog>(builder: (context, value, child) {
+      value.add(widget.title!);
+      return Container(
+        color: Colors.black,
+        child: Text("hello"),
+      );
+    });
     print("Added");
   }
 
@@ -39,6 +46,7 @@ class _MyTextTileState extends State<MyTextTile> {
             onPressed: () {
               setState(() {
                 changeIcon();
+                add();
               });
             }),
         leading: Container(
