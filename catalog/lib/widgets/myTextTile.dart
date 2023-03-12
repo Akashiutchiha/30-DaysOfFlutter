@@ -26,13 +26,7 @@ class _MyTextTileState extends State<MyTextTile> {
   }
 
   void add() {
-    Consumer<Selected_Catalog>(builder: (context, value, child) {
-      value.add(widget.title!);
-      return Container(
-        color: Colors.black,
-        child: Text("hello"),
-      );
-    });
+    Provider.of<Selected_Catalog>(context, listen: false).add(widget.title!);
     print("Added");
   }
 
