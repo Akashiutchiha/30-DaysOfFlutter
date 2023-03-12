@@ -18,16 +18,22 @@ class _MyTextTileState extends State<MyTextTile> {
   void changeIcon() {
     if (icon == Icons.add) {
       icon = Icons.check;
-      print("Changed");
+
+      add();
     } else {
       icon = Icons.add;
-      print("Changed");
+      remove();
     }
   }
 
   void add() {
     Provider.of<Selected_Catalog>(context, listen: false).add(widget.title!);
     print("Added");
+  }
+
+  void remove() {
+    Provider.of<Selected_Catalog>(context, listen: false).remove(widget.title!);
+    print("Removed");
   }
 
   @override
@@ -40,7 +46,6 @@ class _MyTextTileState extends State<MyTextTile> {
             onPressed: () {
               setState(() {
                 changeIcon();
-                add();
               });
             }),
         leading: Container(

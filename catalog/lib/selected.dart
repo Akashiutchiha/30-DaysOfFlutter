@@ -7,4 +7,9 @@ class Selected_Catalog extends ChangeNotifier {
     checked.add(item);
     notifyListeners();
   }
+
+  void remove(String item) {
+    checked.remove(item);
+    notifyListeners();
+  }
 }
